@@ -1,5 +1,4 @@
 import { IInputs, IOutputs } from "./generated/ManifestTypes";
-import { HelloWorld, IHelloWorldProps } from "./HelloWorld";
 import * as React from "react";
 import {ImageSlider, ImageSliderItem, ImageSliderProps} from "./components/imageslider";
 import { inputProperties } from "@fluentui/react";
@@ -44,13 +43,7 @@ export class ImageSliderPCF implements ComponentFramework.ReactControl<IInputs, 
      * @returns ReactElement root react element for the control
      */
     public updateView(context: ComponentFramework.Context<IInputs>): React.ReactElement {
-        /*this.items = IMAGES.map((image) => {
-            return {
-                id: image.name,
-                imageUrl: image.url,
-                name: image.name
-            } as ImageSliderItem;
-        });*/
+        
         const isTestHarness = context.userSettings.userId === '{00000000-0000-0000-0000-000000000000}';
         const dataset = context.parameters.items;
         const datasetChanged = context.updatedProperties.indexOf('dataset') > -1;
@@ -69,7 +62,7 @@ export class ImageSliderPCF implements ComponentFramework.ReactControl<IInputs, 
 
         
 
-        this.iconColour = context.parameters.iconColour.raw || "rgb(211,211,211)";
+        this.iconColour = context.parameters.iconColour.raw || "rgb(25,255,255)";
 
 
         
