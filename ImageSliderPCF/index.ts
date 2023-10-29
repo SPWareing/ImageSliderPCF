@@ -2,23 +2,19 @@ import { IInputs, IOutputs } from "./generated/ManifestTypes";
 import { HelloWorld, IHelloWorldProps } from "./HelloWorld";
 import * as React from "react";
 import {ImageSlider, ImageSliderItem, ImageSliderProps} from "./components/imageslider";
+import { inputProperties } from "@fluentui/react";
 
 
-const IMAGES = [
-    {name: "Orb Test", url:"https://images.pexels.com/photos/220429/pexels-photo-220429.jpeg"},
-    {name: "Night Test",url:"https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg"}, 
-    {name:"Flower Test",url:"https://images.pexels.com/photos/268534/pexels-photo-268534.jpeg"},
-    {name:"Boat Test",url: "https://images.pexels.com/photos/268535/pexels-photo-268535.jpeg"}, ]
+
 
 export class ImageSliderPCF implements ComponentFramework.ReactControl<IInputs, IOutputs> {
     private theComponent: ComponentFramework.ReactControl<IInputs, IOutputs>;
     private notifyOutputChanged: () => void;
     private context: ComponentFramework.Context<IInputs>;
-    private items : ImageSliderItem[] = [];
+    private items : ImageSliderItem[] = [ ];
 
     iconColour: string ;
-    defaultImage = "https://fabricweb.azureedge.net/fabric-website/placeholders/350x150.png"
-    defaultImageName = "Default Image"
+    
 
     /**
      * Empty constructor.
@@ -58,14 +54,13 @@ export class ImageSliderPCF implements ComponentFramework.ReactControl<IInputs, 
         const isTestHarness = context.userSettings.userId === '{00000000-0000-0000-0000-000000000000}';
         const dataset = context.parameters.items;
         const datasetChanged = context.updatedProperties.indexOf('dataset') > -1;
-        
         if (datasetChanged || isTestHarness) {
           
             this.items = dataset.sortedRecordIds.map((id) => {
                 const record = dataset.records[id];
                 return {
                     id: record.getRecordId(),
-                    imageUrl: record.getFormattedValue('ImageURL') ,
+                    imageUrl: record.getValue('ImageURL') as string ,
                     name: record.getValue('ImageName') as string 
                     
                 } as ImageSliderItem;

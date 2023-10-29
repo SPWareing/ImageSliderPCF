@@ -5,8 +5,8 @@ import '../css/image-slider.css'
 
 export interface ImageSliderItem {
     id: number | string;
-    imageUrl: string;
-    name?: string;
+    imageUrl: string | undefined;
+    name?: string | undefined;
 }
 
 export interface ImageSliderProps {
@@ -16,28 +16,27 @@ export interface ImageSliderProps {
 
 }
 
-
+const IMAGES = [
+    {id : 1, name: "Placeholder 350x150", imageUrl:"https://fabricweb.azureedge.net/fabric-website/placeholders/350x150.png"},
+    {id: 2, name: "Placeholder 500x250",imageUrl:"https://fabricweb.azureedge.net/fabric-website/placeholders/500x250.png"}, 
+     ] as ImageSliderItem[];
 
 export const ImageSlider = React.memo((props: ImageSliderProps) => {
 
     const { imageUrls , width, iconColour } = props;
     const [imageIndex, setImageIndex] = React.useState(0);
+    const [imageList, setImageList] = React.useState<ImageSliderItem[]>(IMAGES);
 
-    /*if (imageUrls.length === 0) {
-        return null;
-    }*/
-
+    //To avoid the control crashing have a placeholder image if no images are passed in
+    const src = imageUrls.length === 0? IMAGES: imageUrls;
     
-    const imageList = React.useMemo(() => {
-        return imageUrls
-        
-    }, [imageUrls]);
-    
-    
+                
     React.useEffect(() => {
+        
+        setImageList(src);
         console.log("imageUrls changed:", imageUrls);
         // Perform side effect here
-      }, [imageUrls]);
+      }, [src]);
 
     const iconClassArrow = mergeStyles({
         fontSize: "2em",
@@ -133,7 +132,7 @@ export const ImageSlider = React.memo((props: ImageSliderProps) => {
                 {return <button key={index} className='img-slider-dot-btn'
                 onClick={() => setImageIndex(index)}> { imageIndex === index? <IconCircleDot/> : <IconCircle />}</button>})}
             </div>
-                {imageList[imageIndex].name?? ""}
+                {(imageList[imageIndex].name === undefined ||imageList[imageIndex].name === 'val')? "":imageList[imageIndex].name}
 
         </div>
         
