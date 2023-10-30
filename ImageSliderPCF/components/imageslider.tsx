@@ -3,10 +3,11 @@ import { Icon } from '@fluentui/react/lib/Icon'
 import { mergeStyles, mergeStyleSets } from '@fluentui/react/lib/Styling';
 import '../css/image-slider.css'
 
+
 export interface ImageSliderItem {
     id: number | string;
-    imageUrl: string | undefined;
-    name?: string | undefined;
+    imageUrl: string ;
+    name?: string ;
 }
 
 export interface ImageSliderProps {
@@ -107,7 +108,7 @@ export const ImageSlider = React.memo((props: ImageSliderProps) => {
                    src={url.imageUrl} 
                    aria-label= {url.name? url.name : ""}
                    className='img-slider-img'
-                   style={{ translate: `${-100 * imageIndex}%` }}
+                   style={{ translate: `${-100 * imageIndex}%` }} onClick={() => window.open(url.imageUrl, "_blank")}
                    />
                 })}
             
@@ -133,7 +134,8 @@ export const ImageSlider = React.memo((props: ImageSliderProps) => {
                 {return <button key={index} className='img-slider-dot-btn'
                 onClick={() => setImageIndex(index)}> { imageIndex === index? <IconCircleDot/> : <IconCircle />}</button>})}
             </div>
-                {(imageList[imageIndex].name === undefined ||imageList[imageIndex].name === 'val')? "":imageList[imageIndex].name}
+                   {imageList[imageIndex].name }
+               
 
         </div>
         
