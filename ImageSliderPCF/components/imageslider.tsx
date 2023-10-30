@@ -15,7 +15,7 @@ export interface ImageSliderProps {
     iconColour?: string | undefined;
 
 }
-
+// defines the default image list if no images are passed in
 const IMAGES = [
     {id : 1, name: "Placeholder 350x150", imageUrl:"https://fabricweb.azureedge.net/fabric-website/placeholders/350x150.png"},
     {id: 2, name: "Placeholder 500x250",imageUrl:"https://fabricweb.azureedge.net/fabric-website/placeholders/500x250.png"}, 
@@ -34,7 +34,7 @@ export const ImageSlider = React.memo((props: ImageSliderProps) => {
     React.useEffect(() => {
         
         setImageList(src);
-        console.log("imageUrls changed:", imageUrls);
+        //console.log("imageUrls changed:", imageUrls);
         // Perform side effect here
       }, [src]);
 
@@ -118,6 +118,7 @@ export const ImageSlider = React.memo((props: ImageSliderProps) => {
                 <IconLeft /></button>}
             {imageIndex < imageList.length -1 && <button onClick={nextImage} className='img-slider-btn' style={{right:"0"}}>
                 <IconRight/></button>}
+            
             <div    style={{
                 position:"absolute",
                 bottom:"0.25rem",
