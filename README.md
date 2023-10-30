@@ -44,10 +44,10 @@ cd ImageSliderPCF
 Push the PCF to your required environment
 
 ```
-pac pcf push -pp Samples
+pac pcf push -pp samples
 
 ```
-<i><b>NB</b> A Publisher Prefix of samples is suggest for testing components. The PCF can be packaged as a solution when testing has been satisified</i>
+<i><b>NB</b> A Publisher Prefix of samples is suggested for testing components. The PCF can be packaged as a solution when testing has been satisified</i>
 
 ### Add the component to a Canvas App
 
