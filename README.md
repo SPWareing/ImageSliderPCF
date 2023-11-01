@@ -49,6 +49,7 @@ pac pcf push -pp samples
 ```
 <i><b>NB</b> A Publisher Prefix of samples is suggested for testing components. The PCF can be packaged as a solution when testing has been satisified</i>
 
+----
 ### Add the component to a Canvas App
 
 Upon adding to a canvas the control will default to the following image
@@ -68,5 +69,8 @@ Without a default image the control errors and does not mount. Once The PCF has 
      alt="Screenshot of PCF"
      style="float: right; margin-right: 10px;" /></p>
 
+
+----
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 
 
