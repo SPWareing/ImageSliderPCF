@@ -59,19 +59,20 @@ export class ImageSliderPCF implements ComponentFramework.ReactControl<IInputs, 
         
 
         this.iconColour = context.parameters.iconColour.raw || "rgb(25,255,255)";
-
-
-        
-        
         const allocatedWidth = parseInt(context.mode.allocatedWidth as unknown as string);
-
-        return React.createElement(
-            ImageSlider,
-            {
+        
+        const imageSliderProps : ImageSliderProps = {
                 imageUrls: this.items,
                 width: allocatedWidth,
                 iconColour: this.iconColour
-            } as ImageSliderProps
+
+        };      
+               
+
+        return React.createElement(
+            ImageSlider, 
+            imageSliderProps
+            
         );
         
     }

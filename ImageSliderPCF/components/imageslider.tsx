@@ -24,12 +24,12 @@ const IMAGES = [
 
 export const ImageSlider = React.memo((props: ImageSliderProps) => {
 
-    const { imageUrls , width, iconColour } = props;
+    const { imageUrls = [] , width, iconColour } = props;
     const [imageIndex, setImageIndex] = React.useState(0);
     const [imageList, setImageList] = React.useState<ImageSliderItem[]>(IMAGES);
 
     //To avoid the control crashing have a placeholder image if no images are passed in
-    const src = imageUrls.length === 0? IMAGES: imageUrls;
+    const src = imageUrls?.length === 0? IMAGES: imageUrls;
     
                 
     React.useEffect(() => {
@@ -37,24 +37,28 @@ export const ImageSlider = React.memo((props: ImageSliderProps) => {
         setImageList(src);
         //console.log("imageUrls changed:", imageUrls);
         // Perform side effect here
-      }, [src]);
+      }, [imageUrls]);
 
-    const iconClassArrow = mergeStyles({
+    const classes = mergeStyleSets({
+        iconArrow:{
         fontSize: "2em",
         color:iconColour
-      });
-
-    
-      const iconClassDot = mergeStyles({
+      },
+      iconDot:{
         
         color:iconColour
-      });
+      }
+    
+    });
+
+    
+    
 
 
-    const IconLeft = () => <Icon iconName="ChevronLeft" className={iconClassArrow}/>;
-    const IconRight = () => <Icon iconName="ChevronRight" className={iconClassArrow}/>;
-    const IconCircle = () => <Icon iconName="LocationCircle" className={iconClassDot} />;
-    const IconCircleDot = () => <Icon iconName="Location" className={iconClassDot} />;
+    const IconLeft = () => <Icon iconName="ChevronLeft" className={classes.iconArrow}/>;
+    const IconRight = () => <Icon iconName="ChevronRight" className={classes.iconArrow}/>;
+    const IconCircle = () => <Icon iconName="LocationCircle" className={classes.iconDot} />;
+    const IconCircleDot = () => <Icon iconName="Location" className={classes.iconDot} />;
 
 
     function previousImage() {
@@ -71,7 +75,9 @@ export const ImageSlider = React.memo((props: ImageSliderProps) => {
         setImageIndex(previousImageIndex => previousImageIndex + 1);
     }
 
-    
+    function downloadImage() {
+        window.open(imageList[imageIndex].imageUrl, "_blank");
+    }
 
 
     const rootStyle = React.useMemo(() => {
@@ -108,7 +114,8 @@ export const ImageSlider = React.memo((props: ImageSliderProps) => {
                    src={url.imageUrl} 
                    aria-label= {url.name? url.name : ""}
                    className='img-slider-img'
-                   style={{ translate: `${-100 * imageIndex}%` }} onClick={() => window.open(url.imageUrl, "_blank")}
+                   style={{ translate: `${-100 * imageIndex}%` }} onClick={downloadImage}
+                   loading = "lazy"
                    />
                 })}
             

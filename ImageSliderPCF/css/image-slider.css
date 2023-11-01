@@ -1,12 +1,11 @@
-/*box size all elements*/
-
+/* Reset box sizing for all elements */
 *, *::before, *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 
 
-
+/* Styles for image slider images */
 .img-slider-img {
     object-fit: cover;
     width: 100%;
@@ -17,7 +16,7 @@
     transition: translate 300ms ease-in-out;
     
   }
-
+/* Styles for image slider buttons */
   .img-slider-btn {
     all: unset;
     display: block;
