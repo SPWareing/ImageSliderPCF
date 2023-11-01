@@ -53,11 +53,20 @@ pac pcf push -pp samples
 
 Upon adding to a canvas the control will default to the following image
 
-![Default Image](https://fabricweb.azureedge.net/fabric-website/placeholders/350x150.png)
+
+
+
+<p align="center"><img src="https://fabricweb.azureedge.net/fabric-website/placeholders/350x150.png"
+     alt="Default Image"
+     style="float: right; margin-right: 10px;" /></p>
 
 Without a default image the control errors and does not mount. Once The PCF has mounted, the image(s) can be changed to a collection/datasource and should render similar to the below.
 
-![Screenshot](screensnip.png)
+
+
+<p align="center" ><img src="screensnip.png"
+     alt="Screenshot of PCF"
+     style="float: right; margin-right: 10px;" /></p>
 
 
 
