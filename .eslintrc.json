@@ -5,7 +5,8 @@
     },
     "extends": [
       "eslint:recommended",
-      "plugin:react/recommended"
+      "plugin:react/recommended",
+      "plugin:prettier/recommended"
     ],
     "globals": {
       "ComponentFramework": true
@@ -20,11 +21,26 @@
       "@typescript-eslint"
     ],
     "rules": {
-      "no-unused-vars": "off"
+      "no-unused-vars": "off",
+      "prettier/prettier": ["error", {
+        "prettier/prettier": "warn",
+        "semi": true,
+        "trailingComma": "all",
+        "singleQuote": true,
+        "printWidth": 120,
+        "tabWidth": 4,
+        "endOfLine":"crlf"
+      }]
+      
+      
     },
+    
     "settings": {
       "react": {
         "version": "detect"
       }
-    }
+    },
+    "ignorePatterns": [
+    "generated/"
+  ]
 }

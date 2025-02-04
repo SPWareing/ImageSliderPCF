@@ -1,24 +1,19 @@
-import { IInputs, IOutputs } from "./generated/ManifestTypes";
-import * as React from "react";
-import {ImageSlider, ImageSliderItem, ImageSliderProps} from "./components/imageslider";
-import { inputProperties } from "@fluentui/react";
-
-
-
+import { IInputs, IOutputs } from './generated/ManifestTypes';
+import * as React from 'react';
+import { ImageSlider } from './components/imageslider';
+import { ImageSliderItem, ImageSliderProps } from './utils/interfaces';
 
 export class ImageSliderPCF implements ComponentFramework.ReactControl<IInputs, IOutputs> {
     private theComponent: ComponentFramework.ReactControl<IInputs, IOutputs>;
     private notifyOutputChanged: () => void;
     private context: ComponentFramework.Context<IInputs>;
-    private items : ImageSliderItem[] = [ ];
-
-    iconColour: string ;
-    
+    private items: ImageSliderItem[] = [];
+    iconColour: string;
 
     /**
      * Empty constructor.
      */
-    constructor() { }
+    constructor() {}
 
     /**
      * Used to initialize the control instance. Controls can kick off remote server calls and other initialization actions here.
@@ -30,59 +25,44 @@ export class ImageSliderPCF implements ComponentFramework.ReactControl<IInputs, 
     public init(
         context: ComponentFramework.Context<IInputs>,
         notifyOutputChanged: () => void,
-        state: ComponentFramework.Dictionary
+        state: ComponentFramework.Dictionary,
     ): void {
         this.notifyOutputChanged = notifyOutputChanged;
         this.context = context;
         this.context.mode.trackContainerResize(true);
     }
 
-    
     public updateView(context: ComponentFramework.Context<IInputs>): React.ReactElement {
-        
         const isTestHarness = context.userSettings.userId === '{00000000-0000-0000-0000-000000000000}';
         const dataset = context.parameters.items;
         const datasetChanged = context.updatedProperties.indexOf('dataset') > -1;
         if (datasetChanged || isTestHarness) {
-          
             this.items = dataset.sortedRecordIds.map((id) => {
                 const record = dataset.records[id];
                 return {
                     id: record.getRecordId(),
-                    imageUrl: record.getValue('ImageURL') as string ,
-                    name: record.getValue('ImageName') as string 
-                    
+                    imageUrl: record.getValue('ImageURL') as string,
+                    name: record.getValue('ImageName') as string,
                 } as ImageSliderItem;
             });
         }
 
-        
-
-        this.iconColour = context.parameters.iconColour.raw || "rgb(25,255,255)";
+        this.iconColour = context.parameters.iconColour.raw || 'rgb(25,255,255)';
         const allocatedWidth = parseInt(context.mode.allocatedWidth as unknown as string);
-        
-        const imageSliderProps : ImageSliderProps = {
-                imageUrls: this.items,
-                width: allocatedWidth,
-                iconColour: this.iconColour
 
-        };      
-               
+        const imageSliderProps: ImageSliderProps = {
+            imageUrls: this.items,
+            width: allocatedWidth,
+            iconColour: this.iconColour,
+        };
 
-        return React.createElement(
-            ImageSlider, 
-            imageSliderProps
-            
-        );
-        
+        return React.createElement(ImageSlider, imageSliderProps);
     }
 
-    
     public getOutputs(): IOutputs {
-        return { };
+        return {};
     }
 
-   
     public destroy(): void {
         // Add code to cleanup control if necessary
     }
