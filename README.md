@@ -39,12 +39,13 @@ Clones the repo
 ```
  git clone https://github.com/SPWareing/ImageSliderPCF.git
 
-cd ImageSliderPCF
-```
-Push the PCF to your required environment
 
 ```
-pac pcf push -pp samples
+Build the solution
+
+```
+cd ImageSliderSolution
+dotnet build -c Release
 
 ```
 <i><b>NB</b> A Publisher Prefix of samples is suggested for testing components. The PCF can be packaged as a solution when testing has been satisified</i>
