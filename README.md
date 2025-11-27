@@ -43,12 +43,13 @@ Clones the repo
 ```
 Build the solution
 
+<i>Solution will output both managed and unmanaged versions</i>
 ```
 cd ImageSliderSolution
 dotnet build -c Release
 
 ```
-<i><b>NB</b> A Publisher Prefix of samples is suggested for testing components. The PCF can be packaged as a solution when testing has been satisified</i>
+
 
 ----
 ### Add the component to a Canvas App
